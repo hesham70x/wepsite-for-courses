@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+Dr. Kerolls Samer | الكيمياء العضوية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'Cairo', sans-serif; background: #0f172a; color: #f8fafc; line-height: 1.7; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        .header { position: fixed; top: 0; left: 0; right: 0; padding: 15px 0; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+        .logo i { color: #f97316; }
+        .logo span { background: linear-gradient(135deg, #3b82f6, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-menu { display: flex; gap: 30px; }
+        .nav-link { color: #94a3b8; font-weight: 600; }
+        .nav-link:hover, .nav-link.active { color: #f97316; }
+        .btn { padding: 10px 25px; border-radius: 25px; font-weight: 700; transition: 0.3s; }
+        .btn-primary { background: linear-gradient(135deg, #f97316, #fb923c); color: white; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(249, 115, 22, 0.4); }
+        
+        /* Hero */
+        .hero { min-height: 100vh; display: flex; align-items: center; background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e3a8a 100%); padding: 100px 0; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 50%); animation: rotate 30s linear infinite; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .hero-content { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero-badge { display: inline-block; padding: 8px 20px; background: rgba(249, 115, 22, 0.2); border: 1px solid rgba(249, 115, 22, 0.3); border-radius: 50px; color: #f97316; font-size: 0.9rem; margin-bottom: 20px; }
+        .hero-title { font-size: 3.5rem; font-weight: 900; line-height: 1.2; margin-bottom: 20px; }
+        .hero-title span { background: linear-gradient(135deg, #f97316, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-desc { font-size: 1.2rem; color: #94a3b8; margin-bottom: 30px; }
+        .hero-stats { display: flex; gap: 40px; }
+        .stat-item { text-align: center; }
+        .stat-num { font-size: 2.5rem; font-weight: 800; color: #f97316; }
+        .stat-label { font-size: 0.9rem; color: #94a3b8; }
+        .hero-img { position: relative; }
+        
+        .hero-img-box {
+    width: 100%;
+    height: 450px;          /* ← ارتفاع الإطار */
+    border-radius: 30px;    /* ← استدارة الحواف */
+    overflow: hidden;       /* ← إختبار الزيادة */
+    box-shadow: 0 0 60px rgba(59, 130, 246, 0.3);
+}
+
+.hero-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* ← الصورة تملأ الإطار */
+}
+        .floating { position: absolute; background: rgba(15, 23, 42, 0.95); padding: 15px 25px; border-radius: 15px; display: flex; align-items: center; gap: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); animation: float 3s ease-in-out infinite; }
+        .floating-1 { top: 15%; right: -20px; }
+        .floating-2 { bottom: 15%; left: -20px; animation-delay: 1s; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .floating-icon { width: 45px; height: 45px; background: linear-gradient(135deg, #f97316, #fb923c); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+        .floating-text h4 { font-size: 0.95rem; font-weight: 700; }
+        .floating-text p { font-size: 0.85rem; color: #94a3b8; }
+        
+        /* Courses Section */
+        .courses { padding: 100px 0; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
+        .section-header h2::after { content: ''; display: block; width: 80px; height: 4px; background: linear-gradient(135deg, #f97316, #fb923c); margin: 15px auto 0; border-radius: 2px; }
+        .section-header p { color: #94a3b8; font-size: 1.1rem; }
+        .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .course-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; overflow: hidden; transition: 0.3s; }
+        .course-card:hover { transform: translateY(-10px); border-color: #f97316; box-shadow: 0 25px 50px rgba(0,0,0,0.5); }
+        .course-img { height: 200px; background: linear-gradient(135deg, #1e3a8a, #0f172a); display: flex; align-items: center; justify-content: center; position: relative; }
+        .course-img i { font-size: 5rem; color: #3b82f6; opacity: 0.7; }
+        .course-badge { position: absolute; top: 15px; right: 15px; padding: 5px 15px; background: linear-gradient(135deg, #f97316, #fb923c); border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
+        .course-content { padding: 25px; }
+        .course-cat { display: inline-block; padding: 5px 15px; background: rgba(59, 130, 246, 0.2); color: #3b82f6; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 12px; }
+        .course-content h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 10px; }
+        .course-content p { color: #94a3b8; font-size: 0.95rem; margin-bottom: 20px; }
+        .course-meta { display: flex; justify-content: space-between; align-items: center; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .course-info { display: flex; gap: 15px; color: #94a3b8; font-size: 0.9rem; }
+        .course-price { font-size: 1.4rem; font-weight: 800; color: #f97316; }
+        .course-btn { width: 100%; padding: 12px; background: linear-gradient(135deg, #f97316, #fb923c); color: white; border-radius: 12px; font-size: 1rem; font-weight: 700; margin-top: 20px; transition: 0.3s; }
+        .course-btn:hover { transform: scale(1.02); }
+        
+        /* Features */
+        .features { padding: 100px 0; background: #1e293b; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .feature-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 35px 25px; text-align: center; transition: 0.3s; }
+        .feature-card:hover { transform: translateY(-10px); border-color: #3b82f6; }
+        .feature-icon { width: 70px; height: 70px; background: linear-gradient(135deg, #1e3a8a, #3b82f6); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 20px; }
+        .feature-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; }
+        .feature-card p { color: #94a3b8; font-size: 0.95rem; }
+        
+        /* Testimonials */
+        .testimonials { padding: 100px 0; background: #1e293b; }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .testimonial-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; }
+        .testimonial-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .testimonial-avatar { width: 55px; height: 55px; background: linear-gradient(135deg, #1e3a8a, #3b82f6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 700; }
+        .testimonial-info h4 { font-size: 1.05rem; font-weight: 700; }
+        .testimonial-info p { color: #94a3b8; font-size: 0.9rem; }
+        .stars { color: #fbbf24; margin-bottom: 12px; }
+        .testimonial-card p { color: #94a3b8; font-style: italic; }
+        
+        /* Footer */
+        .footer { padding: 60px 0 30px; background: #020617; border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+        .footer-brand .logo { margin-bottom: 15px; }
+        .footer-brand p { color: #94a3b8; margin-bottom: 20px; }
+        .social-links { display: flex; gap: 12px; }
+        .social-links a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .social-links a:hover { background: #f97316; }
+        .footer-section h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; }
+        .footer-section ul li { margin-bottom: 12px; }
+        .footer-section ul li a { color: #94a3b8; }
+        .footer-section ul li a:hover { color: #f97316; }
+        .footer-section ul li i { margin-left: 8px; color: #f97316; }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: #94a3b8; }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-img { display: none; }
+            .hero-buttons { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            .footer-content { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .hero-title { font-size: 2.2rem; }
+            .courses-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .social-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav-container">
+                <a href="#" class="logo">
+                    <i class="fas fa-flask"></i>
+                    <span>Dr. Kerolls Samer
+</span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link active">الرئيسية</a></li>
+                    <li><a href="#courses" class="nav-link">الكورسات</a></li>
+                    <li><a href="#features" class="nav-link">مميزاتنا</a></li>
+                    <li><a href="#testimonials" class="nav-link">آراء الطلاب</a></li>
+                </ul>
+                <a href="#courses" class="btn btn-primary">
+                    <i class="fas fa-play"></i>
+                    ابدأ التعلم
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        <i class="fas fa-star"></i>
+                        <span>أفضل مدرس كيمياء</span>
+                    </div>
+                    <h1 class="hero-title">
+                        تعلم الكيمياء مع <span>أفضل</span> المعلمين
+                    </h1>
+                    <p class="hero-desc">
+                        شرح مبسط ومنظم لمنهج الكيمياء العضوية للصف الثالث الثانوي. 
+                        تعلم من خلال أسئلة كتاب التفوق وحقق أعلى الدرجات.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-num">+5000</div>
+                            <div class="stat-label">طالب</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-num">+10</div>
+                            <div class="stat-label">كورس</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-num">10+</div>
+                            <div class="stat-label">سنوات خبرة</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-img">
+                    <div class="hero-img-box">
+                            <img src="photo.jpg" alt="اسم المدرس">
+
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="floating floating-1">
+                        <div class="floating-icon"><i class="fas fa-video"></i></div>
+                        <div class="floating-text"><h4>فيديوهات HD</h4><p>جودة عالية</p></div>
+                    </div>
+                    <div class="floating floating-2">
+                        <div class="floating-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="floating-text"><h4>شهادة معتمدة</h4><p>عند الإنجاز</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses" id="courses">
+        <div class="container">
+            <div class="section-header">
+                <h2>كورسات الكيمياء العضوية</h2>
+                <p>اختر الكورس المناسب لك وابدأ التعلم الآن</p>
+            </div>
+            <div class="courses-grid">
+                <!-- Course 1 -->
+                <div class="course-card">
+                    <div class="course-img">
+                            <img src="photooo.jpg" alt="كورس الكيمياء">
+
+                        <span class="course-badge">الجزء الاول</span>
+                    </div>
+                    <div class="course-content">
+                        <span class="course-cat">كيمياء عضوية</span>
+                        <h3>أسئلة كتاب التفوق - ما قبل الألكانات (الجزء الاول) 2026</h3>
+                        <p>شرح تفصيلي لجميع أسئلة كتاب التفوق في منهج الكيمياء العضوية للصف الثالث الثانوي</p>
+                        <div class="course-meta">
+                            <div class="course-info">
+                                <span><i class="fas fa-play-circle"></i> 1 درس</span>
+                                <span><i class="fas fa-clock"></i> 1 ساعة</span>
+                            </div>
+                        </div>
+                        <button class="course-btn" onclick="openVideo('video1')">
+                            <i class="fas fa-play"></i> شاهد الآن
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="course-card">
+                    <div class="course-img">
+                            <img src="photoo.jpg" alt="كورس الكيمياء">
+
+                        <span class="course-badge">الجزء الثاني</span>
+                    </div>
+                    <div class="course-content">
+                        <span class="course-cat">كيمياء عضوية</span>
+                        <h3>أسئلة كتاب التفوق - ما قبل الألكانات (الجزء الثاني) 2026</h3>
+                        <p>المراجعة الشاملة والتدريب على حل الأسئلة لامتحان الكيمياء العضوية</p>
+                        <div class="course-meta">
+                            <div class="course-info">
+                                <span><i class="fas fa-play-circle"></i> 1 درس</span>
+                                <span><i class="fas fa-clock"></i> 1 ساعة</span>
+                            </div>
+                        </div>
+                        <button class="course-btn" onclick="openVideo('video2')">
+                            <i class="fas fa-play"></i> شاهد الآن
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>لماذا تختارنا؟</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-user-graduate"></i></div>
+                    <h3>خبرة واسعة</h3>
+                    <p>أكثر من 10 سنوات في مجال التعليم</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-video"></i></div>
+                    <h3>شرح واضح</h3>
+                    <p>فيديوهات عالية الجودة ومباشرة</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>شهادات معتمدة</h3>
+                    <p>شهادة عند إتمام كل كورس</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                    <h3>دعم مستمر</h3>
+                    <p>فريق متخصص لمساعدتك</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>آراء الطلاب</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">أ</div>
+                        <div class="testimonial-info">
+                            <h4>أحمد محمد</h4>
+                            <p>طالب ثانوية عامة</p>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <p>"شرح أكثر من ممتاز، فهمت الكيمياء العضوية لأول مرة. شكراً أستاذ!"</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">س</div>
+                        <div class="testimonial-info">
+                            <h4>سارة علي</h4>
+                            <p>طالبة جامعية</p>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <p>"الشرح سهل وواضح، وال فيديوهات عالية الجودة. أنصح الجميع"</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">م</div>
+                        <div class="testimonial-info">
+                            <h4>محمد خالد</h4>
+                            <p>طالب ثانوية عامة</p>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <p>"الحمد لله نجحت في الكيمياء بفضل هذا الشرح المميز"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <i class="fas fa-flask"></i>
+                        <span>Dr. Kerolls Samer
+</span>
+                    </a>
+                    <p>منصتك الأولى لتعلم الكيمياء مع أفضل المعلمين المتخصصين</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#courses">الكورسات</a></li>
+                        <li><a href="#features">مميزاتنا</a></li>
+                        <li><a href="#testimonials">آراء الطلاب</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>الدعم</h3>
+                    <ul>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">الشروط والأحكام</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> email@example.com</li>
+                        <li><i class="fas fa-phone"></i> +966 123 456 789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة © 2024 اسم المدرس</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div id="videoModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:10000; align-items:center; justify-content:center;">
+        <div style="max-width:900px; width:90%; position:relative;">
+            <button onclick="closeVideo()" style="position:absolute; top:-40px; right:0; background:none; color:white; font-size:2rem; cursor:pointer;">
+                <i class="fas fa-times"></i>
+            </button>
+            <div style="padding-bottom:56.25%; height:0; position:relative;">
+                <iframe id="videoFrame" style="position:absolute; top:0; left:0; width:100%; height:100%; border-radius:15px;" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const videos = {
+            'video1': 'https://www.youtube.com/embed/Bz6MFEu6E5Q',
+            'video2': 'https://www.youtube.com/embed/Qun3joseubc'
+        };
+
+        function openVideo(id) {
+            document.getElementById('videoModal').style.display = 'flex';
+            document.getElementById('videoFrame').src = videos[id];
+        }
+
+        function closeVideo() {
+            document.getElementById('videoModal').style.display = 'none';
+            document.getElementById('videoFrame').src = '';
+        }
+
+        // Close modal on click outside
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) closeVideo();
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
